@@ -1,0 +1,5 @@
+- hosts: local
+  become: No
+  tasks:
+   - name: Add random publisher host to bootstrap group
+     add_host: name="{{ groups['publisher_prod'] | difference(groups['publisher_prod_offline']) | random }}"  group="publisher_prod_bootstrap"
